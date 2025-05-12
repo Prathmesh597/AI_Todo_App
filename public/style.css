@@ -1,0 +1,246 @@
+/* D:\Github Repo\AI_Todo_App\public\style.css */
+
+/* Basic Reset & Root Variables */
+:root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --danger-color: #dc3545;
+    --danger-hover-color: #c82333;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-gray: #343a40;
+    --text-color: #212529;
+    --completed-text-color: #6c757d;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --font-family: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top for longer content */
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.app-container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    width: 100%;
+    max-width: 800px; /* Controls the max width of the app */
+    margin-top: 30px;
+}
+
+/* Header */
+.app-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+.app-header h1 {
+    font-size: 2.5rem;
+    color: var(--dark-gray);
+    font-weight: 700;
+}
+
+.app-header .ai-highlight {
+    color: var(--primary-color);
+}
+
+/* Main Content */
+.app-main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#taskInput {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+#taskInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    flex-grow: 1; /* Allow buttons to share space */
+    min-width: 120px; /* Minimum width for buttons */
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-hover-color);
+}
+
+.btn:disabled {
+    background-color: var(--medium-gray);
+    color: var(--completed-text-color);
+    cursor: not-allowed;
+}
+
+
+/* Task List Section */
+.task-list-container h2 {
+    font-size: 1.8rem;
+    color: var(--dark-gray);
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 1px dashed var(--medium-gray);
+    padding-bottom: 10px;
+}
+
+#taskList {
+    list-style-type: none;
+}
+
+#taskList li {
+    display: flex;
+    align-items: center;
+    padding: 12px 0; /* Reduced side padding, handled by container */
+    border-bottom: 1px solid var(--medium-gray);
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease;
+}
+
+#taskList li:last-child {
+    border-bottom: none;
+}
+
+#taskList li:hover {
+    background-color: #f8f8f8; /* Subtle hover for list items */
+}
+
+#taskList li input[type="checkbox"] {
+    margin-right: 15px;
+    /* Make checkbox larger and easier to click */
+    transform: scale(1.3); 
+    cursor: pointer;
+}
+
+/* Styling for completed tasks - this will be applied by JS setting style.textDecoration */
+/* We can also add a class if needed, but text-decoration is handled in script.js */
+#taskList li label { /* Assuming you might wrap text in label, if not, style li directly */
+    flex-grow: 1;
+    word-break: break-word; /* Prevent long words from breaking layout */
+}
+
+#taskList li.completed label, 
+#taskList li.completed { /* If we add a .completed class to li */
+    /* color: var(--completed-text-color);
+    text-decoration: line-through; (This is handled by JS currently) */
+}
+
+.no-tasks-message {
+    text-align: center;
+    color: var(--completed-text-color);
+    padding: 20px;
+    font-style: italic;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--completed-text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    .app-header h1 {
+        font-size: 2rem;
+    }
+
+    .task-list-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-group {
+        flex-direction: column; /* Stack buttons on very small screens */
+    }
+    .btn {
+        width: 100%; /* Make buttons full width when stacked */
+    }
+    .app-header h1 {
+        font-size: 1.8rem;
+    }
+    #taskInput {
+        font-size: 1rem;
+    }
+    #taskList li {
+        font-size: 1rem;
+    }
+}
