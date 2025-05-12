@@ -63,15 +63,3 @@ Watch the application in action:
     ```
 5.  Open your browser and navigate to `http://localhost:3000`.
 
-## How It Works
-
-The application uses a Node.js/Express backend primarily to serve the frontend static files and to act as a proxy for API calls to the local Ollama service.
-
-When a user adds or updates a task:
-1.  The frontend (`script.js`) sends the user's input and the current list of tasks to a backend API endpoint (`/api/process-task` in `server.js`).
-2.  The backend server constructs a detailed prompt, including the current tasks and the user's new input, and sends it to the Ollama API, specifying the LLM to use (e.g., `gemma3:4b`).
-3.  The LLM processes the prompt and generates a structured command (e.g., `NEW_TASK: {...}`, `UPDATE_TASK: {...}`) indicating how the task list should be modified.
-4.  The backend server forwards this structured command back to the frontend.
-5.  The frontend JavaScript parses this command and updates the task list in the UI and in `localStorage`.
-
-
